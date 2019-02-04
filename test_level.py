@@ -2,6 +2,7 @@ import pygame
 from Background import Background
 from Load import load_image
 from Player import Player
+from ManaBall import ManaBall
 
 pygame.init()
 
@@ -18,10 +19,15 @@ wizard = Player(load_image("sorlowalk.png", (128, 128, 128, 255)),
 running = True
 clock = pygame.time.Clock()
 while running:
-    clock.tick(10)
+    tick = clock.tick(30)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                wizard.image = wizard.fireimg
+                ManaBall(all_sprites, wizard.manaballs,
+                         wizard.rect.right, wizard.rect.center[1])
     keys = pygame.key.get_pressed()
     if keys[pygame.K_RIGHT]:
         wizard.rect.x += 3
@@ -35,9 +41,8 @@ while running:
     if keys[pygame.K_DOWN]:
         wizard.rect.y += 3
         wizard.update(1)
-    if keys[pygame.K_SPACE]:
-        wizard.fire()
     screen.blit(bg.image, bg.rect)
     all_sprites.draw(screen)
+    wizard.manaballs.update()
     pygame.display.flip()
 pygame.quit()

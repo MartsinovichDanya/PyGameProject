@@ -1,9 +1,12 @@
 import pygame
+from Load import load_image
+from ManaBall import ManaBall
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, sheet1, sheet2, stand, fire, columns, rows, x, y, group):
         super().__init__(group)
+        self.group = group
         self.standimg = stand
         self.fireimg = fire
         self.all_frames = []
@@ -15,7 +18,7 @@ class Player(pygame.sprite.Sprite):
         self.cur_back_frame = 0
         self.image = self.standimg
         self.rect = self.rect.move(x, y)
-        self.manaball = None
+        self.manaballs = pygame.sprite.Group()
 
     def cut_sheet(self, sheet, columns, rows):
         self.rect = pygame.Rect(0, 0, sheet.get_width() // columns,
@@ -33,8 +36,3 @@ class Player(pygame.sprite.Sprite):
         else:
             self.cur_back_frame = (self.cur_back_frame + 1) % len(self.back_frames)
             self.image = self.back_frames[self.cur_back_frame]
-
-    def fire(self):
-        self.image = self.fireimg
-        # some logic
-        self.image = self.standimg
