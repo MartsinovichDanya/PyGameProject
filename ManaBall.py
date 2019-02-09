@@ -7,7 +7,7 @@ class ManaBall(pygame.sprite.Sprite):
         self.add(group2)
         self.radius = 10
         self.image = pygame.Surface((2 * self.radius, 2 * self.radius), pygame.SRCALPHA, 32)
-        pygame.draw.circle(self.image, pygame.Color("blue"), (self.radius, self.radius), self.radius)
+        pygame.draw.circle(self.image, (51, 51, 255), (self.radius, self.radius), self.radius)
         self.rect = pygame.Rect(x, y, 2 * self.radius, 2 * self.radius)
         self.vx = 5
         self.vy = 0

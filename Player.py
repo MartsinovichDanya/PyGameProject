@@ -1,6 +1,4 @@
 import pygame
-from Load import load_image
-from ManaBall import ManaBall
 
 
 class Player(pygame.sprite.Sprite):

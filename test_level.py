@@ -3,6 +3,7 @@ from Background import Background
 from Load import load_image
 from Player import Player
 from ManaBall import ManaBall
+from StartScreen import start_screen
 
 pygame.init()
 
@@ -13,11 +14,12 @@ bg = Background('background.jpg', [0, 0])
 wizard = Player(load_image("sorlowalk.png", (128, 128, 128, 255)),
                 load_image("sorlowalkback.png", (128, 128, 128, 255)),
                 load_image("sorlostand.png", (128, 128, 128, 255)),
-                load_image("sorlofire.png", (128, 128, 128, 255)), 4, 1, 73, 73, all_sprites)
+                load_image("sorlofire.png", (128, 128, 128, 255)), 4, 1, 0, 300, all_sprites)
 
 
 running = True
 clock = pygame.time.Clock()
+start_screen(screen)
 while running:
     tick = clock.tick(30)
     for event in pygame.event.get():
@@ -29,20 +31,20 @@ while running:
                 ManaBall(all_sprites, wizard.manaballs,
                          wizard.rect.right, wizard.rect.center[1] + 10)
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_RIGHT]:
-        if wizard.rect.right < 700:
+    if keys[pygame.K_d]:
+        if wizard.rect.right < width:
             wizard.rect.x += 3
         wizard.update(1)
-    if keys[pygame.K_LEFT]:
+    if keys[pygame.K_a]:
         if wizard.rect.left > 0:
             wizard.rect.x -= 3
         wizard.update(2)
-    if keys[pygame.K_UP]:
+    if keys[pygame.K_w]:
         if wizard.rect.top > 0:
             wizard.rect.y -= 3
         wizard.update(1)
-    if keys[pygame.K_DOWN]:
-        if wizard.rect.bottom < 700:
+    if keys[pygame.K_s]:
+        if wizard.rect.bottom < height:
             wizard.rect.y += 3
         wizard.update(1)
     screen.blit(bg.image, bg.rect)
