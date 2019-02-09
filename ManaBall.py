@@ -11,7 +11,9 @@ class ManaBall(pygame.sprite.Sprite):
         self.rect = pygame.Rect(x, y, 2 * self.radius, 2 * self.radius)
         self.vx = 5
         self.vy = 0
-        self.k = False
+        # self.k = False
 
-    def update(self):
+    def update(self, surf):
+        if not surf.get_rect().colliderect(self.rect):
+            self.kill()
         self.rect = self.rect.move(self.vx, self.vy)

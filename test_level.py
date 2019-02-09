@@ -27,22 +27,26 @@ while running:
             if event.key == pygame.K_SPACE:
                 wizard.image = wizard.fireimg
                 ManaBall(all_sprites, wizard.manaballs,
-                         wizard.rect.right, wizard.rect.center[1])
+                         wizard.rect.right, wizard.rect.center[1] + 10)
     keys = pygame.key.get_pressed()
     if keys[pygame.K_RIGHT]:
-        wizard.rect.x += 3
+        if wizard.rect.right < 700:
+            wizard.rect.x += 3
         wizard.update(1)
     if keys[pygame.K_LEFT]:
-        wizard.rect.x -= 3
+        if wizard.rect.left > 0:
+            wizard.rect.x -= 3
         wizard.update(2)
     if keys[pygame.K_UP]:
-        wizard.rect.y -= 3
+        if wizard.rect.top > 0:
+            wizard.rect.y -= 3
         wizard.update(1)
     if keys[pygame.K_DOWN]:
-        wizard.rect.y += 3
+        if wizard.rect.bottom < 700:
+            wizard.rect.y += 3
         wizard.update(1)
     screen.blit(bg.image, bg.rect)
     all_sprites.draw(screen)
-    wizard.manaballs.update()
+    wizard.manaballs.update(screen)
     pygame.display.flip()
 pygame.quit()
