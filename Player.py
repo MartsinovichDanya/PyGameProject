@@ -19,6 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.manaballs = pygame.sprite.Group()
         self.mana = 100
         self.health = 100
+        self.mask = pygame.mask.from_surface(self.image)
 
     def cut_sheet(self, sheet, columns, rows):
         self.rect = pygame.Rect(0, 0, sheet.get_width() // columns,
@@ -33,6 +34,8 @@ class Player(pygame.sprite.Sprite):
         if direction == 1:
             self.cur_forward_frame = (self.cur_forward_frame + 1) % len(self.forward_frames)
             self.image = self.forward_frames[self.cur_forward_frame]
+            self.mask = pygame.mask.from_surface(self.image)
         else:
             self.cur_back_frame = (self.cur_back_frame + 1) % len(self.back_frames)
             self.image = self.back_frames[self.cur_back_frame]
+            self.mask = pygame.mask.from_surface(self.image)
