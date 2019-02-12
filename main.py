@@ -6,6 +6,7 @@ from ManaBall import ManaBall
 from Boss import Boss
 from StartScreen import start_screen
 from GameOverScreen import game_over_screen
+from WinScreen import win_screen
 
 pygame.init()
 
@@ -79,6 +80,8 @@ while running:
     pygame.display.flip()
     if wizard.health == 0:
         game_over_screen(screen)
+    if enemi.health == 0:
+        win_screen(screen)
     counter += 1
 
 pygame.quit()
