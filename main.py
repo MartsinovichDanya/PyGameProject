@@ -1,9 +1,13 @@
 import pygame
+
 from Background import Background
 from Load import load_image
 from Player import Player
 from ManaBall import ManaBall
 from Boss import Boss
+from ManaBonus import ManaBonus
+from HealthBonus import HealthBonus
+
 from StartScreen import start_screen
 from GameOverScreen import game_over_screen
 from WinScreen import win_screen
@@ -32,7 +36,11 @@ h_rect = h_indicator.get_rect()
 m_rect = m_indicator.get_rect()
 h_rect.topleft = (20, 20)
 m_rect.topleft = (20, 40)
+manabonus_group = pygame.sprite.Group()
+healthbonus_group = pygame.sprite.Group()
 counter = 0
+mana_bonus_counter = 0
+health_bonus_counter = 0
 
 while running:
     tick = clock.tick(30)
@@ -74,14 +82,30 @@ while running:
     wizard.manaballs.update(screen, enemi)
     enemi.update()
     enemi.fireballs.update(screen, wizard)
+    manabonus_group.update(wizard, enemi)
+    healthbonus_group.update(wizard, enemi)
+    pygame.display.flip()
+
     if counter == enemi.fire_freq:
         enemi.fire(wizard)
         counter = 0
-    pygame.display.flip()
+
+    if mana_bonus_counter == 90:
+        ManaBonus(load_image('manabonus.png', -1), all_sprites, manabonus_group, width, height)
+        mana_bonus_counter = 0
+
+    if health_bonus_counter == 600:
+        HealthBonus(load_image('healthbonus.png', -1), all_sprites, healthbonus_group, width, height)
+        health_bonus_counter = 0
+
     if wizard.health == 0:
         game_over_screen(screen)
+
     if enemi.health == 0:
         win_screen(screen)
+
     counter += 1
+    mana_bonus_counter += 1
+    health_bonus_counter += 1
 
 pygame.quit()
