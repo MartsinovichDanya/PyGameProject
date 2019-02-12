@@ -1,10 +1,14 @@
-from ManaBall import ManaBall
 import pygame
 
 
-class FireBall(ManaBall):
-    def __init__(self, group1, group2, x, y, vx, vy, color):
-        super().__init__(group1, group2, x, y, color)
+class FireBall(pygame.sprite.Sprite):
+    def __init__(self, group1, group2, img, x, y, vx, vy):
+        super().__init__(group1)
+        self.add(group2)
+        self.image = img
+        self.rect = pygame.Rect(x, y, self.image.get_width(),
+                                self.image.get_height())
+        self.mask = pygame.mask.from_surface(self.image)
         self.vx = vx
         self.vy = vy
 
@@ -14,5 +18,5 @@ class FireBall(ManaBall):
         self.rect = self.rect.move(self.vx, self.vy)
 
         if pygame.sprite.collide_mask(self, enemi):
-            enemi.health -= 50
+            enemi.health -= 10
             self.kill()

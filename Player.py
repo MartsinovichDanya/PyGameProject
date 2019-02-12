@@ -17,8 +17,8 @@ class Player(pygame.sprite.Sprite):
         self.image = self.standimg
         self.rect = self.rect.move(x, y)
         self.manaballs = pygame.sprite.Group()
-        self.mana = 100
-        self.health = 100
+        self.mana = 30
+        self.health = 30
         self.mask = pygame.mask.from_surface(self.image)
 
     def cut_sheet(self, sheet, columns, rows):

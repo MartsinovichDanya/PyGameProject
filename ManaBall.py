@@ -19,5 +19,5 @@ class ManaBall(pygame.sprite.Sprite):
         self.rect = self.rect.move(self.vx, self.vy)
 
         if pygame.sprite.collide_mask(self, enemi):
-            enemi.health -= 20
+            enemi.health -= 10
             self.kill()
