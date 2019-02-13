@@ -39,7 +39,7 @@ def secret(surf, player):
                     terminate()
                 elif event.type == pygame.KEYDOWN or \
                         event.type == pygame.MOUSEBUTTONDOWN:
-                    return
+                    terminate()
             pygame.display.flip()
 
     else:

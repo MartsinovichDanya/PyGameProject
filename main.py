@@ -36,8 +36,10 @@ start_screen(screen)
 # музыка
 pygame.mixer.init()
 pygame.mixer.music.load(os.path.join('data', 'danzhi.wav'))
-pygame.mixer.music.set_volume(0.2)
+pygame.mixer.music.set_volume(0.5)
 pygame.mixer.music.play(-1)
+wiz_fire = pygame.mixer.Sound(os.path.join('data', 'wiz_fire.wav'))
+enemi_fire = pygame.mixer.Sound(os.path.join('data', 'enemi_fire.wav'))
 
 # определение счетчиков, групп спрайтов и вспомогательных переменных
 running = True
@@ -66,6 +68,7 @@ while running:
             if event.key == pygame.K_SPACE:
                 wizard.image = wizard.fireimg
                 if wizard.mana >= 10:
+                    wiz_fire.play()
                     ManaBall(all_sprites, wizard.manaballs,
                              wizard.rect.right, wizard.rect.center[1] + 10, (51, 51, 255))
                     wizard.mana -= 10
@@ -105,6 +108,7 @@ while running:
 
     # обработка выстрелов противника
     if counter == enemi.fire_freq:
+        enemi_fire.play()
         enemi.fire(wizard)
         counter = 0
 
