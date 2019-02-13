@@ -1,5 +1,6 @@
 import pygame
 import sys
+from Captions import captions
 from Load import load_image
 import random
 
@@ -15,7 +16,7 @@ exit_place = random.randint(73, 627)
 def secret(surf, player):
     if player.rect.left == 0 and player.rect.center[1] == exit_place:
         pygame.mixer.music.stop()
-        intro_text = ["Нажмите на любую кнопку",
+        intro_text = ["Для Продолжения нажмите на любую кнопку",
                       "",
                       "MartsinovichDanya",
                       "copyright 2019"]
@@ -39,7 +40,7 @@ def secret(surf, player):
                     terminate()
                 elif event.type == pygame.KEYDOWN or \
                         event.type == pygame.MOUSEBUTTONDOWN:
-                    terminate()
+                    captions(surf)
             pygame.display.flip()
 
     else:

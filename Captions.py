@@ -1,6 +1,5 @@
 import pygame
 from Load import load_image
-from Captions import captions
 import sys
 
 
@@ -9,22 +8,28 @@ def terminate():
     sys.exit()
 
 
-def game_over_screen(surf):
-    intro_text = ["Для продолжения нажмите на любую кнопку",
+def captions(surf):
+    intro_text = ["Код, дизайн, идея - Марцинович Даниил",
+                  "",
+                  "Саундтрек, идея - Джасим Константин",
+                  "",
+                  "",
+                  "",
+                  "Для завершения нажмите на любую кнопку",
                   "",
                   "MartsinovichDanya",
                   "copyright 2019"]
 
-    fon = pygame.transform.scale(load_image('gameover.png'), (surf.get_width(), surf.get_height()))
+    fon = pygame.transform.scale(load_image('background.jpg'), (surf.get_width(), surf.get_height()))
     surf.blit(fon, (0, 0))
-    font = pygame.font.Font(None, 20)
-    text_coord = 580
+    font = pygame.font.Font(None, 40)
+    text_coord = 150
     for line in intro_text:
         string_rendered = font.render(line, 1, pygame.Color('white'))
         intro_rect = string_rendered.get_rect()
         text_coord += 10
         intro_rect.top = text_coord
-        intro_rect.x = 10
+        intro_rect.x = 50
         text_coord += intro_rect.height
         surf.blit(string_rendered, intro_rect)
 
@@ -34,5 +39,5 @@ def game_over_screen(surf):
                 terminate()
             elif event.type == pygame.KEYDOWN or \
                     event.type == pygame.MOUSEBUTTONDOWN:
-                captions(surf)
+                terminate()
         pygame.display.flip()

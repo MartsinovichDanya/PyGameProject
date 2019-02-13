@@ -1,5 +1,6 @@
 import pygame
 from Load import load_image
+from Captions import captions
 import sys
 
 
@@ -9,7 +10,7 @@ def terminate():
 
 
 def win_screen(surf):
-    intro_text = ["Для завершения игры нажмите на любую кнопку",
+    intro_text = ["Для продолжения нажмите на любую кнопку",
                   "",
                   "MartsinovichDanya",
                   "copyright 2019"]
@@ -33,5 +34,5 @@ def win_screen(surf):
                 terminate()
             elif event.type == pygame.KEYDOWN or \
                     event.type == pygame.MOUSEBUTTONDOWN:
-                terminate()
+                captions(surf)
         pygame.display.flip()
