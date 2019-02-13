@@ -1,4 +1,5 @@
 import pygame
+import os
 
 from Background import Background
 from Load import load_image
@@ -34,7 +35,7 @@ start_screen(screen)
 
 # музыка
 pygame.mixer.init()
-pygame.mixer.music.load('data/danzhi.wav')
+pygame.mixer.music.load(os.path.join('data', 'danzhi.wav'))
 pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play(-1)
 

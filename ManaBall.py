@@ -1,4 +1,9 @@
 import pygame
+import os
+
+
+pygame.mixer.init()
+scream = pygame.mixer.Sound(os.path.join('data', 'scream.wav'))
 
 
 class ManaBall(pygame.sprite.Sprite):
@@ -21,3 +26,4 @@ class ManaBall(pygame.sprite.Sprite):
         if pygame.sprite.collide_mask(self, enemi):
             enemi.health -= 10
             self.kill()
+            scream.play()
