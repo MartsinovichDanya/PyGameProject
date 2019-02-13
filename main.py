@@ -11,6 +11,7 @@ from HealthBonus import HealthBonus
 from StartScreen import start_screen
 from GameOverScreen import game_over_screen
 from WinScreen import win_screen
+from EasterEgg import secret
 
 pygame.init()
 
@@ -125,6 +126,8 @@ while running:
     if enemi.health == 0:
         pygame.mixer.music.stop()
         win_screen(screen)
+
+    secret(screen, wizard)
 
     # прибавление счетчиков
     counter += 1
