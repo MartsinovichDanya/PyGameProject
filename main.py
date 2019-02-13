@@ -100,6 +100,8 @@ while running:
     h_indicator = font.render(f'Health: {wizard.health}', 1, pygame.Color('red'))
     m_indicator = font.render(f'Mana: {wizard.mana}', 1, (1, 46, 119))
     boss_indicator = font.render(f'Boss: {enemi.health}', 1, (0, 255, 0))
+    manabonus_group.update(wizard, enemi)
+    healthbonus_group.update(wizard, enemi)
     screen.blit(h_indicator, h_rect)
     screen.blit(m_indicator, m_rect)
     screen.blit(boss_indicator, boss_rect)
@@ -107,8 +109,6 @@ while running:
     wizard.manaballs.update(screen, enemi)
     enemi.update()
     enemi.fireballs.update(screen, wizard)
-    manabonus_group.update(wizard, enemi)
-    healthbonus_group.update(wizard, enemi)
     pygame.display.flip()
 
     # обработка выстрелов противника
